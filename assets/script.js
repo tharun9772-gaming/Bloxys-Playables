@@ -240,7 +240,7 @@
 
         async function loadEmulatorSystems() {
             try {
-                const listUrl = `https://cdn.jsdelivr.net/gh/bloxys-playables/emulator-files@main/cdn-data/list.txt`;
+                const listUrl = `https://esm.sh/gh/bloxys-playables/emulator-files@main/cdn-data/list.txt`;
                 const listResponse = await fetch(listUrl);
                 const listText = await listResponse.text();
                 const files = listText.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
@@ -248,7 +248,7 @@
                 await Promise.all(files.map(async (file) => {
                     try {
                         const systemName = file.replace(/\.txt$/i, '').trim();
-                        const fileUrl = `https://cdn.jsdelivr.net/gh/bloxys-playables/emulator-files@main/cdn-data/extra/${encodeURIComponent(file)}`;
+                        const fileUrl = `https://esm.sh/gh/bloxys-playables/emulator-files@main/cdn-data/extra/${encodeURIComponent(file)}`;
                         const fileResponse = await fetch(fileUrl);
                         const fileText = await fileResponse.text();
                         const games = fileText.split(/\r?\n/)
@@ -283,7 +283,7 @@
 
         async function loadPlatformManifest(platform) {
             try {
-                const rootManifestUrl = `https://cdn.jsdelivr.net/gh/bloxys-playables/${platform.lib}@main/cdn-data/v.json`;
+                const rootManifestUrl = `https://esm.sh/gh/bloxys-playables/${platform.lib}@main/cdn-data/v.json`;
                 const rootResponse = await fetch(rootManifestUrl);
                 const rootRawText = await rootResponse.text();
                 const rootData = cleanAndParseJSON(rootRawText);
@@ -296,7 +296,7 @@
                 const keyGroup = sanitizeUrlComponent(nodeConfig.json.group);
                 const thumbnailFile = sanitizeUrlComponent(nodeConfig.cdn.img);
 
-                const catalogUrl = `https://cdn.jsdelivr.net/gh/bloxys-playables/${platform.lib}@main/cdn-data/${cleanCdnJson}`;
+                const catalogUrl = `https://esm.sh/gh/bloxys-playables/${platform.lib}@main/cdn-data/${cleanCdnJson}`;
                 const catalogResponse = await fetch(catalogUrl);
                 const catalogRawText = await catalogResponse.text();
                 const rawGameList = cleanAndParseJSON(catalogRawText);
@@ -325,7 +325,7 @@
                         series: groupStr,
                         platform: platform.type,
                         lib: platform.lib,
-                        thumb: `https://cdn.jsdelivr.net/gh/bloxys-playables/${platform.lib}@main/cdn-data/${thumbnailFile}`,
+                        thumb: `https://esm.sh/gh/bloxys-playables/${platform.lib}@main/cdn-data/${thumbnailFile}`,
                         emulatorSystem: matchedSystem
                     };
                 });
@@ -483,7 +483,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/flash-em.css">
+    <link rel="stylesheet" href="https://esm.sh/gh/tharun9772/game-assets@main/flash-em.css">
     <title>${game.name}</title>
 </head>
 <body>
@@ -493,17 +493,17 @@
             <div id="gameContainer"></div>
             <div id="fullScreenBar">
                 <h3 id="gameFName"></h3>
-                <div id="fullscreen"><img src="https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/flash-em.svg"></div>
+                <div id="fullscreen"><img src="https://esm.sh/gh/tharun9772/game-assets@main/flash-em.svg"></div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/flash-em.js" data-swf-file-src="https://cdn.jsdelivr.net/gh/bloxys-playables/${game.lib}@main/${game.name}.swf" data-fname="Bloxcraft UBG | Ruffle Player">
+    <script src="https://esm.sh/gh/tharun9772/game-assets@main/flash-em.js" data-swf-file-src="https://esm.sh/gh/bloxys-playables/${game.lib}@main/${game.name}.swf" data-fname="Bloxcraft UBG | Ruffle Player">
     <\/script>
 </body>
 </html>`;
                 iframe.srcdoc = flashBlueprint;
             } else {
-                const remoteTargetUrl = `https://cdn.jsdelivr.net/gh/bloxys-playables/${game.lib}@main/${game.name}.html`;
+                const remoteTargetUrl = `https://esm.sh/gh/bloxys-playables/${game.lib}@main/${game.name}.html`;
                 
                 fetch(remoteTargetUrl)
                     .then(res => res.text())
@@ -531,7 +531,7 @@
 <body>${htmlMarkup}</body>
 </html>`;
                         } else {
-                            const baseTag = `<base href="https://cdn.jsdelivr.net/gh/bloxys-playables/${game.lib}@main/">`;
+                            const baseTag = `<base href="https://esm.sh/gh/bloxys-playables/${game.lib}@main/">`;
                             if (htmlMarkup.includes('<head>')) {
                                 finalMarkup = htmlMarkup.replace('<head>', `<head>${baseTag}`);
                             } else if (htmlMarkup.includes('<html>')) {
